@@ -1,5 +1,9 @@
 <td>
-  <img [src]="item.imagePath" [alt]="item.album" class="img-fluid" style="max-height: 60px">
+  <img
+    [src]="item.imagePath"
+    [alt]="item.album"
+    class="img-fluid"
+    appImgHoverEnlarge [defaultSize]="'50px'" [hoverSize]="'250px'">
 </td>
 <td>{{ item.title }}</td>
 <td>{{ item.artists.join(', ') }}</td>
