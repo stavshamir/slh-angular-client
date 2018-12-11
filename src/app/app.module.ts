@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListeningHistoryComponent } from './listening-history/listening-history.component';
 import { ListeningHistoryItemComponent } from './listening-history/listening-history-list/listening-history-item/listening-history-item.component';
 import { ListeningHistoryListComponent } from './listening-history/listening-history-list/listening-history-list.component';
+import { ListeningHistoryNavigationComponent } from './listening-history/listening-history-navigation/listening-history-navigation.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ListeningHistoryListComponent } from './listening-history/listening-his
     ListeningHistoryComponent,
     ListeningHistoryItemComponent,
     ListeningHistoryListComponent,
+    ListeningHistoryNavigationComponent,
   ],
   imports: [
     BrowserModule
