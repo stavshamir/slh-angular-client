@@ -8,6 +8,7 @@ import { ListeningHistoryItemComponent } from './listening-history/listening-his
 import { ListeningHistoryListComponent } from './listening-history/listening-history-list/listening-history-list.component';
 import { ListeningHistoryNavigationComponent } from './listening-history/listening-history-navigation/listening-history-navigation.component';
 import { ImgHoverEnlargeDirective } from './directives/img-hover-enlarge.directive';
+import { ListeningHistoryDetailComponent } from './listening-history/listening-history-detail/listening-history-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ImgHoverEnlargeDirective } from './directives/img-hover-enlarge.directi
     ListeningHistoryListComponent,
     ListeningHistoryNavigationComponent,
     ImgHoverEnlargeDirective,
+    ListeningHistoryDetailComponent,
   ],
   imports: [
     BrowserModule

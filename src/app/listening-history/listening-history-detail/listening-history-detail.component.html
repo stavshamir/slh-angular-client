@@ -1,0 +1,12 @@
+<div class="row rounded" style="background-color: white">
+  <div class="col-6 mb-3 mt-3">
+    <img [src]="item.imagePath" [alt]="item.album" class="img-fluid">
+  </div>
+  <div class="col-6 mt-3">
+    <h3>{{ item.title }}</h3>
+    <hr>
+    <p><span class="font-weight-bold">Artists: </span>{{ item.artists.join(', ') }}</p>
+    <p><span class="font-weight-bold">Album: </span>{{ item.album }}</p>
+    <p><span class="font-weight-bold">Played at: </span>{{ item.playedAt | date:'EEEE dd-MM-yyyy HH:mm' }}</p>
+  </div>
+</div>
