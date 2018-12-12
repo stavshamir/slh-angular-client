@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeningHistoryNavigationComponent implements OnInit {
 
+  currentPage: number;
+  numberOfPages: number;
+
   constructor() { }
 
   ngOnInit() {
+    this.currentPage = 1;
+    this.numberOfPages = 231;
   }
 
 }
