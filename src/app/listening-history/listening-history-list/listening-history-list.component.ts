@@ -8,7 +8,7 @@ import {ListeningHistoryService} from '../listening-history.service';
   styleUrls: ['./listening-history-list.component.css']
 })
 export class ListeningHistoryListComponent implements OnInit {
-  private listeningHistory: ListeningHistoryItem[];
+  listeningHistory: ListeningHistoryItem[];
 
   constructor(private listeningHistoryService: ListeningHistoryService) { }
 

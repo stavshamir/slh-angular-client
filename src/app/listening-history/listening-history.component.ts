@@ -11,9 +11,12 @@ import {ListeningHistoryService} from './listening-history.service';
 export class ListeningHistoryComponent implements OnInit {
   private selectedItem: ListeningHistoryItem;
 
-  constructor() { }
+  constructor(private listeningHistoryService: ListeningHistoryService) { }
 
   ngOnInit() {
+    this.selectedItem = this.listeningHistoryService.getListeningHistory()[0];
+    this.listeningHistoryService.onSelect.subscribe(
+      (item: ListeningHistoryItem) => this.selectedItem = item
+    );
   }
-
 }
