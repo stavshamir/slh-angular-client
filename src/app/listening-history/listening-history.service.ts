@@ -10,13 +10,13 @@ export class ListeningHistoryService {
 
   constructor(private http: HttpClient) { }
 
-  getListeningHistory(): Observable<ListeningHistoryItem[]> {
+  getListeningHistory(requestParams: { page: number, update: boolean}): Observable<ListeningHistoryItem[]> {
     const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history/get';
 
     let params = new HttpParams();
     params = params.append('size', '7');
-    params = params.append('page', '0');
-    params = params.append('update', 'true');
+    params = params.append('page', String(requestParams.page));
+    params = params.append('update', String(requestParams.update));
 
     return this.http
       .get(baseUrl, { params: params, withCredentials: true })

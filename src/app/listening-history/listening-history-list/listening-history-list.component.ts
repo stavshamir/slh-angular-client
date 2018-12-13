@@ -14,7 +14,7 @@ export class ListeningHistoryListComponent implements OnInit {
 
   ngOnInit() {
     this.listeningHistoryService
-      .getListeningHistory()
+      .getListeningHistory({ page: 0, update: true})
       .subscribe(
         (history: ListeningHistoryItem[]) => {
           this.listeningHistory = history;
