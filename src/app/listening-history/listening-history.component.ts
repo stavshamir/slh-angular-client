@@ -16,6 +16,17 @@ export class ListeningHistoryComponent implements OnInit, OnDestroy {
   constructor(private listeningHistoryService: ListeningHistoryService) { }
 
   ngOnInit() {
+    this.listeningHistoryService
+      .getListeningHistory(0, true)
+      .subscribe(
+        (response: { history: ListeningHistoryItem[], totalPages: number }) => {
+          this.listeningHistoryService.onNewItems.next(response.history);
+          this.listeningHistoryService.numberOfPages.next(response.totalPages);
+          this.selectedItem = response.history[0];
+        },
+        (error) => console.log(error)
+      );
+
     this.onSelectSubscription = this.listeningHistoryService.onSelect.subscribe(
       (item: ListeningHistoryItem) => this.selectedItem = item
     );
