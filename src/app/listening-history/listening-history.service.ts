@@ -1,8 +1,8 @@
 import {ListeningHistoryItem} from './listening-history-item.model';
-import {EventEmitter} from '@angular/core';
+import {Subject} from 'rxjs';
 
 export class ListeningHistoryService {
-  onSelect = new EventEmitter<ListeningHistoryItem>();
+  onSelect = new Subject<ListeningHistoryItem>();
 
   private listeningHistory: ListeningHistoryItem[] = [
     new ListeningHistoryItem('Mirror Mirror', ['Blind Guardian'], 'Nightfall In Middle Earth', 'https://i.scdn.co/image/50661fbc143dd5e53f5812193cda31c2fdc6e10f', new Date()),

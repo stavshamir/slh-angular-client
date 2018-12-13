@@ -15,6 +15,6 @@ export class ListeningHistoryItemComponent {
   onSelect() {
     this.listeningHistoryService
       .onSelect
-      .emit(this.item);
+      .next(this.item);
   }
 }
