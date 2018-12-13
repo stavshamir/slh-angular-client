@@ -7,14 +7,15 @@
       <button class="btn btn-dark mr-1" type="button"
               [disabled]="currentPage === 1"
               (click)="goToPage(currentPage - 1)"> < </button>
-      <form class="form-inline mr-1 align-self-center">
+      <div class="form-inline mr-1 align-self-center">
         <label for="jumpToPage"></label>
         <input type="text"
                class="form-control"
                id="jumpToPage"
                [placeholder]="currentPage + '/' + numberOfPages"
-               style="text-align:center;">
-      </form>
+               style="text-align:center;"
+               (keyup.enter)="navigateByInput($event)">
+      </div>
       <button class="btn btn-dark mr-1" type="button"
               [disabled]="currentPage === numberOfPages"
               (click)="goToPage(currentPage + 1)"> > </button>

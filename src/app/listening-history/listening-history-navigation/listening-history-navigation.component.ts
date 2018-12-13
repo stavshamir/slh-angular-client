@@ -11,7 +11,7 @@ export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
   currentPage = 0;
   numberOfPages = 0;
   private numberOfPagesSubscription: Subscription;
-  
+
   constructor(private listeningHistoryService: ListeningHistoryService) { }
 
   ngOnInit() {
@@ -23,6 +23,10 @@ export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngOnDestroy(): void {
+    this.numberOfPagesSubscription.unsubscribe();
+  }
+
   goToPage(page: number) {
     this.listeningHistoryService
       .getListeningHistory(page - 1, false)
@@ -32,7 +36,9 @@ export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.numberOfPagesSubscription.unsubscribe();
+  navigateByInput(event: KeyboardEvent) {
+    const target = <HTMLTextAreaElement>event.target;
+    this.goToPage(parseInt(target.value, 10));
+    target.value = '';
   }
 }
