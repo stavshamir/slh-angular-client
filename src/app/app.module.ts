@@ -9,6 +9,12 @@ import { ListeningHistoryListComponent } from './listening-history/listening-his
 import { ListeningHistoryNavigationComponent } from './listening-history/listening-history-navigation/listening-history-navigation.component';
 import { ImgHoverEnlargeDirective } from './directives/img-hover-enlarge.directive';
 import { ListeningHistoryDetailComponent } from './listening-history/listening-history-detail/listening-history-detail.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: ListeningHistoryComponent },
+  { path: 'listening-history', component: ListeningHistoryComponent }
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +28,8 @@ import { ListeningHistoryDetailComponent } from './listening-history/listening-h
     ListeningHistoryDetailComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
