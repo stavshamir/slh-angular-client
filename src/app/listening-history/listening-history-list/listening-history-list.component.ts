@@ -13,6 +13,11 @@ export class ListeningHistoryListComponent implements OnInit {
   constructor(private listeningHistoryService: ListeningHistoryService) { }
 
   ngOnInit() {
-    this.listeningHistory = this.listeningHistoryService.getListeningHistory();
+    this.listeningHistoryService
+      .getListeningHistory()
+      .subscribe(
+        (history: ListeningHistoryItem[]) => this.listeningHistory = history,
+        (error) => console.log(error)
+      );
   }
 }

@@ -10,6 +10,7 @@ import { ListeningHistoryNavigationComponent } from './listening-history/listeni
 import { ImgHoverEnlargeDirective } from './directives/img-hover-enlarge.directive';
 import { ListeningHistoryDetailComponent } from './listening-history/listening-history-detail/listening-history-detail.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
