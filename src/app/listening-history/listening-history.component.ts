@@ -10,13 +10,12 @@ import {Subscription} from 'rxjs';
   providers: [ListeningHistoryService]
 })
 export class ListeningHistoryComponent implements OnInit, OnDestroy {
-  private selectedItem: ListeningHistoryItem;
+  selectedItem: ListeningHistoryItem;
   private onSelectSubscription: Subscription;
 
   constructor(private listeningHistoryService: ListeningHistoryService) { }
 
   ngOnInit() {
-    this.selectedItem = this.listeningHistoryService.getListeningHistory()[0];
     this.onSelectSubscription = this.listeningHistoryService.onSelect.subscribe(
       (item: ListeningHistoryItem) => this.selectedItem = item
     );

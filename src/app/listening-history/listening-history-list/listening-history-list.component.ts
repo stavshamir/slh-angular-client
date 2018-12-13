@@ -16,7 +16,10 @@ export class ListeningHistoryListComponent implements OnInit {
     this.listeningHistoryService
       .getListeningHistory()
       .subscribe(
-        (history: ListeningHistoryItem[]) => this.listeningHistory = history,
+        (history: ListeningHistoryItem[]) => {
+          this.listeningHistory = history;
+          this.listeningHistoryService.onSelect.next(history[0]);
+        },
         (error) => console.log(error)
       );
   }
