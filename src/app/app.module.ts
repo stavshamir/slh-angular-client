@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -7,10 +9,9 @@ import { ListeningHistoryComponent } from './listening-history/listening-history
 import { ListeningHistoryItemComponent } from './listening-history/listening-history-list/listening-history-item/listening-history-item.component';
 import { ListeningHistoryListComponent } from './listening-history/listening-history-list/listening-history-list.component';
 import { ListeningHistoryNavigationComponent } from './listening-history/listening-history-navigation/listening-history-navigation.component';
-import { ImgHoverEnlargeDirective } from './directives/img-hover-enlarge.directive';
 import { ListeningHistoryDetailComponent } from './listening-history/listening-history-detail/listening-history-detail.component';
-import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
@@ -25,13 +26,13 @@ const appRoutes: Routes = [
     ListeningHistoryItemComponent,
     ListeningHistoryListComponent,
     ListeningHistoryNavigationComponent,
-    ImgHoverEnlargeDirective,
     ListeningHistoryDetailComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
