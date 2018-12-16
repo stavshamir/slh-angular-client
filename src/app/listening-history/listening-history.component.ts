@@ -3,6 +3,7 @@ import {ListeningHistoryItem} from './listening-history-item.model';
 import {ListeningHistoryService} from './listening-history.service';
 import {Subscription} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {LogInService} from '../log-in.service';
 
 @Component({
   selector: 'app-listening-history',
@@ -12,14 +13,25 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class ListeningHistoryComponent implements OnInit, OnDestroy {
   selectedItem: ListeningHistoryItem;
+  isLoggedIn = false;
   private onSelectSubscription: Subscription;
 
   constructor(
     private listeningHistoryService: ListeningHistoryService,
+    private logInService: LogInService,
     private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.logInService.isLoggedIn();
+    this.logInService.loggedIn.subscribe(
+      (loggedIn: boolean) => this.isLoggedIn = loggedIn
+    );
+
+    if (!this.isLoggedIn) {
+      return;
+    }
+
     this.spinner.show();
 
     this.listeningHistoryService

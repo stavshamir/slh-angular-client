@@ -10,12 +10,16 @@ import { ListeningHistoryItemComponent } from './listening-history/listening-his
 import { ListeningHistoryListComponent } from './listening-history/listening-history-list/listening-history-list.component';
 import { ListeningHistoryNavigationComponent } from './listening-history/listening-history-navigation/listening-history-navigation.component';
 import { ListeningHistoryDetailComponent } from './listening-history/listening-history-detail/listening-history-detail.component';
+import {LogInService} from './log-in.service';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LogInComponent } from './header/log-in/log-in.component';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
-  { path: 'listening-history', component: ListeningHistoryComponent }
+  { path: 'listening-history', component: ListeningHistoryComponent },
+  { path: 'log-in', component: AuthCallbackComponent}
 ];
 
 @NgModule({
@@ -27,6 +31,8 @@ const appRoutes: Routes = [
     ListeningHistoryListComponent,
     ListeningHistoryNavigationComponent,
     ListeningHistoryDetailComponent,
+    LogInComponent,
+    AuthCallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [LogInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

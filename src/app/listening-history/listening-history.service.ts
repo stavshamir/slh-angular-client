@@ -1,7 +1,7 @@
 import {ListeningHistoryItem} from './listening-history-item.model';
 import {Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 @Injectable()
@@ -13,15 +13,18 @@ export class ListeningHistoryService {
   constructor(private http: HttpClient) { }
 
   getListeningHistory(page: number, update: boolean): Observable<{ history: ListeningHistoryItem[], totalPages: number }> {
-    const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history/get';
+    const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history';
 
     let params = new HttpParams();
     params = params.append('size', '7');
     params = params.append('page', String(page));
     params = params.append('update', String(update));
 
+    const headers = new HttpHeaders()
+      .set('spotify-user-uri', localStorage.getItem('spotify-user-uri'));
+
     return this.http
-      .get(baseUrl, { params: params, withCredentials: true })
+      .get(baseUrl, { headers: headers,  params: params })
       .pipe(map(this.toListeningHistoryItems));
   }
 

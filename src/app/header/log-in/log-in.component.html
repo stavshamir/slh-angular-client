@@ -1,0 +1,9 @@
+<a
+  href="https://spotify-listening-history.herokuapp.com/authorize"
+  class="nav-link"
+  *ngIf="!isLoggedIn">Log In</a>
+<a
+  class="nav-link"
+  style="cursor:pointer;"
+  *ngIf="isLoggedIn"
+  (click)="logOut()">Log Out</a>

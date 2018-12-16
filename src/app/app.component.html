@@ -3,6 +3,9 @@
   <div class="row mt-4">
     <div class="col-12">
       <router-outlet></router-outlet>
+      <h2
+        class="text-center"
+        *ngIf="!isLoggedIn">Please log in</h2>
     </div>
   </div>
 </div>
