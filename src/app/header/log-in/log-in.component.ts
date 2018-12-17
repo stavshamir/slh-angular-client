@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {LogInService} from '../../log-in.service';
 import {Subscription} from 'rxjs';
+import {Global} from '../../shared/global';
 
 @Component({
   selector: 'app-log-in',
@@ -26,7 +26,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    localStorage.removeItem('spotify-user-uri');
+    localStorage.removeItem(Global.SPOTIFY_USER_URI_KEY);
     location.reload();
   }
 }

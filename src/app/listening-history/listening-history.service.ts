@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {map} from 'rxjs/operators';
 import {PaginatedList} from '../shared/paginated-list.model';
 import {Track} from '../shared/track.model';
+import {Global} from '../shared/global';
 
 @Injectable()
 export class ListeningHistoryService {
@@ -15,7 +16,7 @@ export class ListeningHistoryService {
   constructor(private http: HttpClient) { }
 
   getListeningHistory(page: number, update: boolean): Observable<PaginatedList<ListeningHistoryItem>> {
-    const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history';
+    const url = Global.BACKEND_BASE_URL + '/listening-history';
 
     let params = new HttpParams();
     params = params.append('size', '7');
@@ -23,10 +24,10 @@ export class ListeningHistoryService {
     params = params.append('update', String(update));
 
     const headers = new HttpHeaders()
-      .set('spotify-user-uri', localStorage.getItem('spotify-user-uri'));
+      .set(Global.SPOTIFY_USER_URI_KEY, localStorage.getItem(Global.SPOTIFY_USER_URI_KEY));
 
     return this.http
-      .get(baseUrl, { headers: headers,  params: params })
+      .get(url, { headers: headers,  params: params })
       .pipe(map(this.toListeningHistoryItems));
   }
 

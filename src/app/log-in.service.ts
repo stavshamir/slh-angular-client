@@ -1,6 +1,7 @@
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Global} from './shared/global';
 
 @Injectable()
 export class LogInService {
@@ -9,11 +10,11 @@ export class LogInService {
   constructor(private http: HttpClient) { }
 
   logIn(code: string): Observable<string> {
-    const authorizeCodeUrl = 'https://spotify-listening-history.herokuapp.com/authorize/code';
+    const authorizeCodeUrl = Global.BACKEND_BASE_URL + '/authorize/code';
     return this.http.post(authorizeCodeUrl, code, {responseType: 'text'});
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('spotify-user-uri') !== null;
+    return localStorage.getItem(Global.SPOTIFY_USER_URI_KEY) !== null;
   }
 }

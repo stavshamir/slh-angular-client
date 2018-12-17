@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {MostPlayedItem} from './most-played-item.model';
 import {PaginatedList} from '../shared/paginated-list.model';
 import {Track} from '../shared/track.model';
+import {Global} from '../shared/global';
 
 @Injectable()
 export class MostPlayedService {
@@ -16,17 +17,17 @@ export class MostPlayedService {
   constructor(private http: HttpClient) { }
 
   getMostPlayed(page: number): Observable<PaginatedList<MostPlayedItem>> {
-    const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history/most-played';
+    const url = Global.BACKEND_BASE_URL + '/listening-history/most-played';
 
     let params = new HttpParams();
     params = params.append('size', this.pageSize.toString());
     params = params.append('page', page.toString());
 
     const headers = new HttpHeaders()
-      .set('spotify-user-uri', localStorage.getItem('spotify-user-uri'));
+      .set(Global.SPOTIFY_USER_URI_KEY, localStorage.getItem(Global.SPOTIFY_USER_URI_KEY));
 
     return this.http
-      .get(baseUrl, { headers: headers,  params: params })
+      .get(url, { headers: headers,  params: params })
       .pipe(map(this.toMostPlayedItems));
   }
 
