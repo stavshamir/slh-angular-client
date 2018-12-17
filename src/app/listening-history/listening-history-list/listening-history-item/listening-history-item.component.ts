@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ListeningHistoryItem } from '../../listening-history-item.model';
 import {ListeningHistoryService} from '../../listening-history.service';
 

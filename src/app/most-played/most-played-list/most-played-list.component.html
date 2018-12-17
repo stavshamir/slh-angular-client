@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-12">
+    <app-most-played-item
+      *ngFor="let item of mostPlayed; index as i"
+      [item]="item"
+      [index]="getAbsoluteIndex(i)"></app-most-played-item>
+  </div>
+</div>

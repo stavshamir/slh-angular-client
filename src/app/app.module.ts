@@ -15,11 +15,15 @@ import {LogInService} from './log-in.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LogInComponent } from './header/log-in/log-in.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { MostPlayedComponent } from './most-played/most-played.component';
+import { MostPlayedListComponent } from './most-played/most-played-list/most-played-list.component';
+import { MostPlayedItemComponent } from './most-played/most-played-list/most-played-item/most-played-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
+  { path: 'log-in', component: AuthCallbackComponent},
   { path: 'listening-history', component: ListeningHistoryComponent },
-  { path: 'log-in', component: AuthCallbackComponent}
+  { path: 'most-played', component: MostPlayedComponent }
 ];
 
 @NgModule({
@@ -33,6 +37,9 @@ const appRoutes: Routes = [
     ListeningHistoryDetailComponent,
     LogInComponent,
     AuthCallbackComponent,
+    MostPlayedComponent,
+    MostPlayedListComponent,
+    MostPlayedItemComponent,
   ],
   imports: [
     BrowserModule,

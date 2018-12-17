@@ -1,0 +1,23 @@
+<div class="row">
+  <ngx-spinner
+    bdColor="darkgray"
+    size="large"
+    type="ball-spin-clockwise">
+  </ngx-spinner>
+</div>
+<div class="row" *ngIf="isLoggedIn">
+  <div class="col-5">
+    <div class="row mb-2">
+      <div class="col-12">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <app-most-played-list></app-most-played-list>
+      </div>
+    </div>
+  </div>
+  <div class="col-7">
+
+  </div>
+</div>
