@@ -20,6 +20,11 @@ export class MostPlayedListComponent implements OnInit, OnDestroy {
       (mostPlayed: {items: MostPlayedItem[], currentPage: number}) => {
         this.mostPlayed = mostPlayed.items;
         this.currentPage = mostPlayed.currentPage;
+
+        this.mostPlayedService.onSelect.next({
+          item: mostPlayed.items[0],
+          index: 1
+        });
       }
     );
   }

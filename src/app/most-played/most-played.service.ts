@@ -10,6 +10,7 @@ import {Track} from '../shared/track.model';
 export class MostPlayedService {
   readonly pageSize = 5;
   onNewItems = new Subject<{items: MostPlayedItem[], currentPage: number}>();
+  onSelect = new Subject<{item: MostPlayedItem, index: number}>();
 
   constructor(private http: HttpClient) { }
 

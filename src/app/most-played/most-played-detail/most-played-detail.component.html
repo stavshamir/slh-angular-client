@@ -1,0 +1,14 @@
+<div *ngIf="item"
+     class="row rounded"
+     style="background-color: white">
+  <div class="col-6 mb-3 mt-3">
+    <img [src]="item.track.imagePath" [alt]="item.track.album" class="img-fluid">
+  </div>
+  <div class="col-6 mt-3">
+    <h3>#{{index}} {{ item.track.title }}</h3>
+    <hr>
+    <p><span class="font-weight-bold">Artists: </span>{{ item.track.artists.join(', ') }}</p>
+    <p><span class="font-weight-bold">Album: </span>{{ item.track.album }}</p>
+    <p><span class="font-weight-bold">Play Count: </span>{{ item.count }}</p>
+  </div>
+</div>

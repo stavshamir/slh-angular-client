@@ -18,6 +18,7 @@ import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { MostPlayedComponent } from './most-played/most-played.component';
 import { MostPlayedListComponent } from './most-played/most-played-list/most-played-list.component';
 import { MostPlayedItemComponent } from './most-played/most-played-list/most-played-item/most-played-item.component';
+import { MostPlayedDetailComponent } from './most-played/most-played-detail/most-played-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     MostPlayedComponent,
     MostPlayedListComponent,
     MostPlayedItemComponent,
+    MostPlayedDetailComponent,
   ],
   imports: [
     BrowserModule,
