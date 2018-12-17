@@ -19,6 +19,7 @@ import { MostPlayedComponent } from './most-played/most-played.component';
 import { MostPlayedListComponent } from './most-played/most-played-list/most-played-list.component';
 import { MostPlayedItemComponent } from './most-played/most-played-list/most-played-item/most-played-item.component';
 import { MostPlayedDetailComponent } from './most-played/most-played-detail/most-played-detail.component';
+import { MostPlayedNavigationComponent } from './most-played/most-played-navigation/most-played-navigation.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     MostPlayedListComponent,
     MostPlayedItemComponent,
     MostPlayedDetailComponent,
+    MostPlayedNavigationComponent,
   ],
   imports: [
     BrowserModule,

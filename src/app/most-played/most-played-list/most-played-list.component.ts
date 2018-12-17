@@ -23,7 +23,7 @@ export class MostPlayedListComponent implements OnInit, OnDestroy {
 
         this.mostPlayedService.onSelect.next({
           item: mostPlayed.items[0],
-          index: 1
+          index: this.getAbsoluteIndex(0)
         });
       }
     );

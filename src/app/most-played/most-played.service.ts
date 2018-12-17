@@ -11,14 +11,16 @@ export class MostPlayedService {
   readonly pageSize = 5;
   onNewItems = new Subject<{items: MostPlayedItem[], currentPage: number}>();
   onSelect = new Subject<{item: MostPlayedItem, index: number}>();
+  numberOfPages = new Subject<number>();
 
   constructor(private http: HttpClient) { }
 
-  getMostPlayed(): Observable<PaginatedList<MostPlayedItem>> {
+  getMostPlayed(page: number): Observable<PaginatedList<MostPlayedItem>> {
     const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history/most-played';
 
     let params = new HttpParams();
     params = params.append('size', this.pageSize.toString());
+    params = params.append('page', page.toString());
 
     const headers = new HttpHeaders()
       .set('spotify-user-uri', localStorage.getItem('spotify-user-uri'));

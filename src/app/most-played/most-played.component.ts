@@ -34,13 +34,16 @@ export class MostPlayedComponent implements OnInit, OnDestroy {
 
     this.spinner.show();
 
-    this.mostPlayedService.getMostPlayed().subscribe(
+    this.mostPlayedService.getMostPlayed(0).subscribe(
       (response: PaginatedList<MostPlayedItem>) => {
         this.spinner.hide();
+
         this.mostPlayedService.onNewItems.next({
           items: response.items,
           currentPage: 0,
         });
+
+        this.mostPlayedService.numberOfPages.next(response.totalPages);
       },
       (error) => console.log(error)
     );

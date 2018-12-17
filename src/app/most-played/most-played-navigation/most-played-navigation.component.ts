@@ -1,21 +1,21 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ListeningHistoryService} from '../listening-history.service';
 import {Subscription} from 'rxjs';
+import {MostPlayedService} from '../most-played.service';
 
 @Component({
-  selector: 'app-listening-history-navigation',
+  selector: 'app-most-played-navigation',
   templateUrl: '../../shared/pages-navigation.component.html',
-  styleUrls: ['./listening-history-navigation.component.css']
+  styleUrls: ['./most-played-navigation.component.css']
 })
-export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
+export class MostPlayedNavigationComponent implements OnInit, OnDestroy {
   currentPage = 0;
   numberOfPages = 0;
   private numberOfPagesSubscription: Subscription;
 
-  constructor(private listeningHistoryService: ListeningHistoryService) { }
+  constructor(private mostPlayedService: MostPlayedService) { }
 
   ngOnInit() {
-    this.numberOfPagesSubscription = this.listeningHistoryService.numberOfPages.subscribe(
+    this.numberOfPagesSubscription = this.mostPlayedService.numberOfPages.subscribe(
       (totalPages: number) => {
         this.numberOfPages = totalPages;
         this.currentPage = 1;
@@ -28,10 +28,10 @@ export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
   }
 
   goToPage(page: number) {
-    this.listeningHistoryService
-      .getListeningHistory(page - 1, false)
+    this.mostPlayedService
+      .getMostPlayed(page - 1)
       .subscribe((o) => {
-        this.listeningHistoryService.onNewItems.next(o.items);
+        this.mostPlayedService.onNewItems.next({ items: o.items, currentPage: page - 1 });
         this.currentPage = page;
       });
   }
