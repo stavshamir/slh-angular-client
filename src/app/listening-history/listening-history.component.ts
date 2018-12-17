@@ -9,7 +9,6 @@ import {PaginatedList} from '../shared/paginated-list.model';
 @Component({
   selector: 'app-listening-history',
   templateUrl: './listening-history.component.html',
-  styleUrls: ['./listening-history.component.css'],
   providers: [ListeningHistoryService]
 })
 export class ListeningHistoryComponent implements OnInit, OnDestroy {

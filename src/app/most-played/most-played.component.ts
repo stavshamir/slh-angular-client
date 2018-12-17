@@ -9,7 +9,6 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-most-played',
   templateUrl: './most-played.component.html',
-  styleUrls: ['./most-played.component.css'],
   providers: [MostPlayedService]
 })
 export class MostPlayedComponent implements OnInit, OnDestroy {

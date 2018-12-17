@@ -5,7 +5,6 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-listening-history-navigation',
   templateUrl: '../../shared/pages-navigation.component.html',
-  styleUrls: ['./listening-history-navigation.component.css']
 })
 export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
   currentPage = 0;

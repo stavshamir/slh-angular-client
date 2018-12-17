@@ -6,7 +6,6 @@ import {MostPlayedService} from '../most-played.service';
 @Component({
   selector: 'app-most-played-list',
   templateUrl: './most-played-list.component.html',
-  styleUrls: ['./most-played-list.component.css']
 })
 export class MostPlayedListComponent implements OnInit, OnDestroy {
   mostPlayed: MostPlayedItem[];

@@ -5,7 +5,6 @@ import {MostPlayedService} from '../most-played.service';
 @Component({
   selector: 'app-most-played-detail',
   templateUrl: './most-played-detail.component.html',
-  styleUrls: ['./most-played-detail.component.css']
 })
 export class MostPlayedDetailComponent implements OnInit {
   item: MostPlayedItem;

@@ -5,7 +5,6 @@ import {MostPlayedService} from '../most-played.service';
 @Component({
   selector: 'app-most-played-navigation',
   templateUrl: '../../shared/pages-navigation.component.html',
-  styleUrls: ['./most-played-navigation.component.css']
 })
 export class MostPlayedNavigationComponent implements OnInit, OnDestroy {
   currentPage = 0;

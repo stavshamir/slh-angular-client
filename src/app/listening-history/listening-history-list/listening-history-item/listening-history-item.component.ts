@@ -5,7 +5,6 @@ import {ListeningHistoryService} from '../../listening-history.service';
 @Component({
   selector: 'app-listening-history-item',
   templateUrl: './listening-history-item.component.html',
-  styleUrls: ['./listening-history-item.component.css']
 })
 export class ListeningHistoryItemComponent {
   @Input() item: ListeningHistoryItem;

@@ -7,7 +7,6 @@ import {Global} from '../shared/global';
 @Component({
   selector: 'app-auth-callback',
   template: '<ngx-spinner bdColor="darkgray" size="large" type="ball-spin-clockwise"></ngx-spinner>',
-  styleUrls: ['./auth-callback.component.css']
 })
 export class AuthCallbackComponent {
   constructor(
