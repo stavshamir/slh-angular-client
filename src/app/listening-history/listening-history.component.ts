@@ -4,6 +4,7 @@ import {ListeningHistoryService} from './listening-history.service';
 import {Subscription} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {LogInService} from '../log-in.service';
+import {PaginatedList} from '../shared/paginated-list.model';
 
 @Component({
   selector: 'app-listening-history',
@@ -37,11 +38,11 @@ export class ListeningHistoryComponent implements OnInit, OnDestroy {
     this.listeningHistoryService
       .getListeningHistory(0, true)
       .subscribe(
-        (response: { history: ListeningHistoryItem[], totalPages: number }) => {
+        (response: PaginatedList<ListeningHistoryItem>) => {
           this.spinner.hide();
-          this.listeningHistoryService.onNewItems.next(response.history);
+          this.listeningHistoryService.onNewItems.next(response.items);
           this.listeningHistoryService.numberOfPages.next(response.totalPages);
-          this.selectedItem = response.history[0];
+          this.selectedItem = response.items[0];
         },
         (error) => console.log(error)
       );

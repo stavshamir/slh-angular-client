@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {PaginatedList} from '../shared/paginated-list.model';
 
 @Injectable()
 export class ListeningHistoryService {
@@ -12,7 +13,7 @@ export class ListeningHistoryService {
 
   constructor(private http: HttpClient) { }
 
-  getListeningHistory(page: number, update: boolean): Observable<{ history: ListeningHistoryItem[], totalPages: number }> {
+  getListeningHistory(page: number, update: boolean): Observable<PaginatedList<ListeningHistoryItem>> {
     const baseUrl = 'https://spotify-listening-history.herokuapp.com/listening-history';
 
     let params = new HttpParams();
@@ -28,8 +29,7 @@ export class ListeningHistoryService {
       .pipe(map(this.toListeningHistoryItems));
   }
 
-  private toListeningHistoryItems(response: HttpResponse<ListeningHistoryItem[]>):
-    { history: ListeningHistoryItem[], totalPages: number } {
+  private toListeningHistoryItems(response: HttpResponse<ListeningHistoryItem[]>): PaginatedList<ListeningHistoryItem> {
     const history = response['content'].map((o) => {
       const data = o.trackData;
       return new ListeningHistoryItem(
@@ -37,9 +37,6 @@ export class ListeningHistoryService {
       );
     });
 
-    return {
-      history: history,
-      totalPages: response['totalPages']
-    };
+    return new PaginatedList(history, response['totalPages']);
   }
 }
