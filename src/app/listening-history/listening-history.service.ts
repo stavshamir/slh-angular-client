@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {PaginatedList} from '../shared/paginated-list.model';
+import {Track} from '../shared/track.model';
 
 @Injectable()
 export class ListeningHistoryService {
@@ -30,11 +31,14 @@ export class ListeningHistoryService {
   }
 
   private toListeningHistoryItems(response: HttpResponse<ListeningHistoryItem[]>): PaginatedList<ListeningHistoryItem> {
-    const history = response['content'].map((o) => {
-      const data = o.trackData;
-      return new ListeningHistoryItem(
-        data['name'], data['artists'], data['albumName'], data['albumImageUrl'], o.playedAt
-      );
+    const history = response['content'].map(o => {
+      const track: Track = {
+        title: o.trackData['name'],
+        artists: o.trackData['artists'],
+        album: o.trackData['albumName'],
+        imagePath: o.trackData['albumImageUrl']
+      };
+      return new ListeningHistoryItem(track, o.playedAt);
     });
 
     return new PaginatedList(history, response['totalPages']);

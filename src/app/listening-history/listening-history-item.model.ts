@@ -1,9 +1,8 @@
+import {Track} from '../shared/track.model';
+
 export class ListeningHistoryItem {
   constructor(
-    public title: string,
-    public artists: string[],
-    public album: string,
-    public imagePath: string,
+    public track: Track,
     public playedAt: Date
   ) { }
 }

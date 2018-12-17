@@ -31,7 +31,7 @@ export class ListeningHistoryNavigationComponent implements OnInit, OnDestroy {
     this.listeningHistoryService
       .getListeningHistory(page - 1, false)
       .subscribe((o) => {
-        this.listeningHistoryService.onNewItems.next(o.history);
+        this.listeningHistoryService.onNewItems.next(o.items);
         this.currentPage = page;
       });
   }
