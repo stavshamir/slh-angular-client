@@ -3,7 +3,6 @@ import {LogInService} from '../log-in.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MostPlayedService} from './most-played.service';
 import {MostPlayedItem} from './most-played-item.model';
-import {PaginatedList} from '../shared/paginated-list.model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -33,16 +32,14 @@ export class MostPlayedComponent implements OnInit, OnDestroy {
 
     this.spinner.show();
 
-    this.mostPlayedService.getMostPlayed(0).subscribe(
-      (response: PaginatedList<MostPlayedItem>) => {
+    this.mostPlayedService.getMostPlayed().subscribe(
+      (mostPlayedItems: MostPlayedItem[]) => {
         this.spinner.hide();
 
         this.mostPlayedService.onNewItems.next({
-          items: response.items,
+          items: mostPlayedItems.slice(0, this.mostPlayedService.pageSize),
           currentPage: 0,
         });
-
-        this.mostPlayedService.numberOfPages.next(response.totalPages);
       },
       (error) => console.log(error)
     );
