@@ -18,7 +18,14 @@ export class MostPlayedService {
 
   constructor(private http: HttpClient) {
     this.getMostPlayed().subscribe(
-      (items: MostPlayedItem[]) => this.mostPlayedItems = items
+      (items: MostPlayedItem[]) => {
+        this.mostPlayedItems = items;
+
+        this.onNewItems.next({
+          items: this.mostPlayedItems.slice(0, this.pageSize),
+          currentPage: 0
+        });
+      }
     );
   }
 

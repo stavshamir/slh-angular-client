@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LogInService} from '../log-in.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MostPlayedService} from './most-played.service';
-import {MostPlayedItem} from './most-played-item.model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -13,6 +12,7 @@ import {Subscription} from 'rxjs';
 export class MostPlayedComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   private logInSubscription: Subscription;
+  private onNewItemsSubscription: Subscription;
 
   constructor(
     private mostPlayedService: MostPlayedService,
@@ -31,22 +31,14 @@ export class MostPlayedComponent implements OnInit, OnDestroy {
     }
 
     this.spinner.show();
-
-    this.mostPlayedService.getMostPlayed().subscribe(
-      (mostPlayedItems: MostPlayedItem[]) => {
-        this.spinner.hide();
-
-        this.mostPlayedService.onNewItems.next({
-          items: mostPlayedItems.slice(0, this.mostPlayedService.pageSize),
-          currentPage: 0,
-        });
-      },
-      (error) => console.log(error)
+    this.onNewItemsSubscription = this.mostPlayedService.onNewItems.subscribe(
+      (_) => this.spinner.hide()
     );
   }
 
   ngOnDestroy() {
     this.logInSubscription.unsubscribe();
+    this.onNewItemsSubscription.unsubscribe();
   }
 
 }
