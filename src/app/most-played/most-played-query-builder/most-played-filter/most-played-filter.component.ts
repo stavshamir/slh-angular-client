@@ -19,4 +19,12 @@ export class MostPlayedFilterComponent implements OnInit {
       .onFilterRemoved
       .next(this.filter.type.toString());
   }
+
+  onFromChanged(e: Event) {
+    this.filter.from = +(<HTMLInputElement>e.target).value;
+  }
+
+  onToChanged(e: KeyboardEvent) {
+    this.filter.to = +(<HTMLInputElement>e.target).value;
+  }
 }
