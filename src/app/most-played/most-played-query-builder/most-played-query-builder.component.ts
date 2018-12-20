@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MostPlayedService} from '../most-played.service';
 import {Filter} from './filter.model';
+import {MostPlayedItem} from '../most-played-item.model';
 
 @Component({
   selector: 'app-most-played-query-builder',
@@ -16,7 +17,6 @@ export class MostPlayedQueryBuilderComponent implements OnInit, OnDestroy {
       type: 'year',
       minValue: 2018,
       maxValue: 2100,
-      defaultValue: this.currentTime.getFullYear(),
       isActive: false,
       from: this.currentTime.getFullYear(),
       to: this.currentTime.getFullYear() + 1
@@ -25,19 +25,17 @@ export class MostPlayedQueryBuilderComponent implements OnInit, OnDestroy {
       type: 'month',
       minValue: 1,
       maxValue: 12,
-      defaultValue: this.currentTime.getMonth() + 1,
       isActive: false,
       from: this.currentTime.getMonth() + 1,
-      to: this.currentTime.getMonth() + 2
+      to: this.currentTime.getMonth() + 2 === 13 ? 1 : this.currentTime.getMonth() + 2
     },
     'hour': {
       type: 'hour',
       minValue: 0,
       maxValue: 23,
-      defaultValue: this.currentTime.getHours(),
       isActive: false,
       from: this.currentTime.getHours(),
-      to: this.currentTime.getHours() + 1
+      to: this.currentTime.getHours() + 1 === 24 ? 0 : this.currentTime.getHours() + 1
     }
   };
 
@@ -53,4 +51,16 @@ export class MostPlayedQueryBuilderComponent implements OnInit, OnDestroy {
     this.onFilterRemovedSubscription.unsubscribe();
   }
 
+  go() {
+    this.mostPlayedService.getMostPlayed(this.filters).subscribe(
+      (items: MostPlayedItem[]) => {
+        this.mostPlayedService.mostPlayedItems = items;
+
+        this.mostPlayedService.onNewItems.next({
+          items: items.slice(0, this.mostPlayedService.pageSize),
+          currentPage: 0
+        });
+      }
+    );
+  }
 }

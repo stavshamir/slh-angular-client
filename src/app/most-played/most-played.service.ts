@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {MostPlayedItem} from './most-played-item.model';
 import {Track} from '../shared/track.model';
 import {Global} from '../shared/global';
+import {Filter} from './most-played-query-builder/filter.model';
 
 @Injectable()
 export class MostPlayedService {
@@ -29,15 +30,44 @@ export class MostPlayedService {
     );
   }
 
-  getMostPlayed(): Observable<MostPlayedItem[]> {
+  getMostPlayed(filters?: { [key: string]: Filter }): Observable<MostPlayedItem[]> {
     const url = Global.BACKEND_BASE_URL + '/listening-history/most-played';
 
     const headers = new HttpHeaders()
       .set(Global.SPOTIFY_USER_URI_KEY, localStorage.getItem(Global.SPOTIFY_USER_URI_KEY));
 
+    const params = this.getFilterParams(filters);
+
     return this.http
-      .get(url, { headers: headers })
+      .get(url, { params: params, headers: headers })
       .pipe(map(this.toMostPlayedItems));
+  }
+
+  private getFilterParams(filters: { [p: string]: Filter }) {
+    let params = new HttpParams();
+
+    if (filters) {
+      if (filters['year'].isActive) {
+        params = params.append('fromYear', filters['year'].from.toString(10));
+        params = params.append('toYear', filters['year'].to.toString(10));
+      }
+
+      if (filters['month'].isActive) {
+        params = params.append('fromMonth', filters['month'].from.toString(10));
+
+        const to = filters['month'].to !== 1 ? filters['month'].to : 13;
+        params = params.append('toMonth', to.toString(10));
+      }
+
+      if (filters['hour'].isActive) {
+        params = params.append('fromHour', filters['hour'].from.toString(10));
+
+        const to = filters['hour'].to !== 0 ? filters['hour'].to : 24;
+        params = params.append('toHour', to.toString(10));
+      }
+    }
+
+    return params;
   }
 
   private toMostPlayedItems(response: { trackData: any, count: number }[]): MostPlayedItem[] {
