@@ -21,6 +21,8 @@ import { MostPlayedItemComponent } from './most-played/most-played-list/most-pla
 import { MostPlayedDetailComponent } from './most-played/most-played-detail/most-played-detail.component';
 import { MostPlayedNavigationComponent } from './most-played/most-played-navigation/most-played-navigation.component';
 import { MostPlayedQueryBuilderComponent } from './most-played/most-played-query-builder/most-played-query-builder.component';
+import { MostPlayedFilterComponent } from './most-played/most-played-query-builder/most-played-filter/most-played-filter.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: ListeningHistoryComponent },
@@ -46,10 +48,12 @@ const appRoutes: Routes = [
     MostPlayedDetailComponent,
     MostPlayedNavigationComponent,
     MostPlayedQueryBuilderComponent,
+    MostPlayedFilterComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     NgxSpinnerModule
   ],

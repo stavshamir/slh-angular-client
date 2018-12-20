@@ -1,0 +1,11 @@
+export class Filter {
+  constructor(
+    public type: string,
+    public minValue: number,
+    public maxValue: number,
+    public defaultValue: number,
+    public isActive: boolean,
+    public from: number,
+    public to: number,
+  ) {}
+}

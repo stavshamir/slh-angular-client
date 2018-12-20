@@ -9,8 +9,11 @@ import {Global} from '../shared/global';
 @Injectable()
 export class MostPlayedService {
   readonly pageSize = 5;
+
   onNewItems = new Subject<{items: MostPlayedItem[], currentPage: number}>();
   onSelect = new Subject<{item: MostPlayedItem, index: number}>();
+  onFilterRemoved = new Subject<string>();
+
   mostPlayedItems: MostPlayedItem[];
 
   constructor(private http: HttpClient) {
